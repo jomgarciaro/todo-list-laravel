@@ -7,6 +7,7 @@ use App\Http\Requests\Api\Todo\StoreAndUpdateRequest;
 use App\Http\Resources\Api\TodoResource;
 use App\Models\Todo;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
@@ -54,9 +55,9 @@ class ToDoController extends Controller
         return response(null, 204);
     }
 
-    public function toggle(Todo $todo): TodoResource
+    public function changeStatus(Request $request, Todo $todo): TodoResource
     {
-        $todo->done = !$todo->done;
+        $todo->status = $request->input('status');
 
         $todo->save();
 

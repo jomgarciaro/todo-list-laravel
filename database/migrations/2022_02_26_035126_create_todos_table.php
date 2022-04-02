@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->boolean('done')->default(false);
+            $table->enum('status', ['process', 'completed', 'pending'])->default('pending');
             $table->timestamps();
         });
     }
