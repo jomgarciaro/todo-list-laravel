@@ -1,5 +1,9 @@
 <template>
     <div class="flex flex-col gap-2">
+        <div class="relative flex flex-col items-center">
+            <h2 class="z-10 bg-gray-200 px-4 text-xl text-gray-500">Create</h2>
+            <hr class="absolute top-3 w-full border-2 border-gray-500" />
+        </div>
         <div class="flex gap-2">
             <input
                 v-model="title"
