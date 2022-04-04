@@ -6,6 +6,7 @@ use App\Exports\ToDoExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Todo\StoreAndUpdateRequest;
 use App\Http\Resources\Api\TodoResource;
+use App\Imports\TodoImport;
 use App\Models\Todo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -71,5 +72,10 @@ class ToDoController extends Controller
         $status = $request->query('status');
 
         return Excel::download(new ToDoExport($status), now().$status.'todoList.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new TodoImport, $request->file('file'));
     }
 }
